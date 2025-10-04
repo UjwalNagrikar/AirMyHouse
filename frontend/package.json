@@ -37,5 +37,12 @@
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
-  }
+  },
+
+  # GitHub Action to deploy to GitHub Pages
+  "script": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test"
+}
 }

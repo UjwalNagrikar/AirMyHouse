@@ -1,5 +1,2 @@
-# Ignore node_modules in frontend
 frontend/node_modules/
-
-# Ignore macOS system files
 .DS_Store
