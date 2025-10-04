@@ -3,37 +3,35 @@ name: Deploy React Frontend
 on:
   push:
     branches:
-      - main   # change if your branch name is different
+      - main   # change branch if needed
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: frontend  # 👈 sets working directory globally
+
     steps:
-      # Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json  # 👈 point to correct lock file
 
-      # Install dependencies
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
 
-      # Build React app
       - name: Build project
         run: npm run build
-        working-directory: ./frontend
 
-      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/build
+          publish_dir: frontend/build
